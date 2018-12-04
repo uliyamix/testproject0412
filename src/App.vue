@@ -1,28 +1,54 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    
+    <forms :fields="fields1" 
+    header='hello' 
+    @eventName="parentEvent"
+    ></forms>
+    
+    <forms/>
+        
+    <ul>
+       <li v-for='(item, index) in items' :key='index'>
+       {{ item }}
+       </li>
+    </ul>
+    
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import forms from './components/forms.vue'
 
 export default {
   name: 'app',
+  data () {
+  return {
+      
+      
+      fields1: ['text', 'radio', 'checkbox', 'submit'],
+      fields2: ['text', 'text', 'submit'],
+      fields3: ['text', 'checkbox', 'submit'],
+      items: []
+      
+  }
+  },
+  methods: {
+      parentEvent(value){
+         this.items.push(value)
+      }
+
+  },
+  computed: {
+
+  },
   components: {
-    HelloWorld
+    forms
   }
 }
 </script>
 
+
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
